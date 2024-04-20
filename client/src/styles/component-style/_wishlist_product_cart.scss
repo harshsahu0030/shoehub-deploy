@@ -1,0 +1,137 @@
+.wishlist_product_cart_container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1vmax;
+  border: 1px solid $bg-color-lighter-gray;
+  border-radius: 5px;
+  padding: 1vmax;
+
+  .top {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+
+    > img {
+      width: 100%;
+      object-fit: contain;
+      height: 20vmax;
+    }
+  }
+
+  .center {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 1vmax;
+
+    > .heading {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3vmax;
+
+      > h5 {
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+
+      > h4 {
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 200ms ease-in-out;
+        display: -webkit-box;
+        -webkit-line-clamp: 2; /* number of lines to show */
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-transform: capitalize;
+
+        &:hover {
+          color: $bg-color-dark-blue;
+        }
+      }
+    }
+
+    > .price {
+      display: flex;
+      align-items: center;
+      gap: 0.6vmax;
+
+      > span:nth-child(1) {
+        font-size: 0.9rem;
+        text-decoration: line-through;
+        font-weight: 600;
+        color: $text-color-gray;
+      }
+
+      > span:nth-child(2) {
+        font-size: 1rem;
+        font-weight: 600;
+        color: $text-color-red;
+      }
+
+      > span:nth-child(3) {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: $text-color-blue;
+      }
+    }
+  }
+
+  > .bottom {
+    width: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1vmax;
+
+    > button {
+      width: 100%;
+      padding: 0.5vmax;
+      border-radius: 50px;
+      background-color: $bg-color-blue;
+      color: $text-color-white;
+      border: none;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: all 200ms ease-in-out;
+
+      &:hover {
+        opacity: 0.8;
+      }
+
+      &:nth-child(1) {
+        background-color: $bg-color-red;
+      }
+    }
+  }
+}
+
+//tablet ------------------
+@media only screen and (min-width: 801px) and (max-width: 1024px) {
+  .wishlist_product_cart_container {
+    .top {
+      > img {
+        height: 15vmax;
+      }
+    }
+  }
+}
+
+//mobile ------------------
+@media (max-width: 800px) {
+  .wishlist_product_cart_container {
+    .top {
+      > img {
+        height: 25vmax;
+      }
+    }
+  }
+}

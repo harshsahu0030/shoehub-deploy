@@ -1,0 +1,44 @@
+.otp_verfication_container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1vmax;
+  margin-top: 5vmax;
+
+  > .otp_form {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1vmax;
+    margin: auto;
+
+    > h3 {
+      font-size: 1.2rem;
+    }
+
+    > button {
+      width: 100%;
+      padding: 1vmax 0;
+      background-color: $bg-color-dark-blue;
+      color: $text-color-white;
+      border-radius: 5px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    > span {
+      width: 100%;
+      text-align: end;
+      font-size: 1rem;
+      color: $bg-color-dark-blue;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

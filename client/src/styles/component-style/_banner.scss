@@ -1,0 +1,63 @@
+.banner_container {
+  width: 100%;
+  display: flex;
+
+  > .left {
+    width: 20%;
+  }
+
+  > .right {
+    width: 80%;
+    padding-left: 1vmax;
+
+    .swiper {
+      width: 100%;
+      height: 100%;
+    }
+
+    .swiper-slide {
+      text-align: center;
+      background: #fff;
+
+      /* Center slide text vertically */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  }
+}
+
+//tablet ------------------
+@media only screen and (min-width: 801px) and (max-width: 1024px) {
+  .banner_container {
+    > .left {
+      width: 25%;
+    }
+    > .right {
+      width: 75%;
+    }
+  }
+}
+
+//mobile ------------------
+@media (max-width: 800px) {
+  .banner_container {
+    > .left {
+      width: 0;
+    }
+
+    > .right {
+      width: 100%;
+      padding-left: 0;
+    }
+  }
+}
