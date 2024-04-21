@@ -4,10 +4,10 @@ import propTypes from "prop-types";
 
 const PaginationCom = ({ products, resultPerPage, setPage }) => {
   return (
-    <Stack className="paginationCom_container" spacing={2}>
+    <Stack spacing={2}>
       <Pagination
-        count={Math.ceil(parseInt(products) / parseInt(resultPerPage))}
-        onClick={(e) => setPage(e.target.innerText)}
+        count={Math.ceil(products / resultPerPage)}
+        onChange={(e) => setPage(e.target.innerText)}
         variant="outlined"
         shape="rounded"
       />

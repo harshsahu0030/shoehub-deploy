@@ -8,7 +8,57 @@
     width: 85%;
     margin: auto;
     display: flex;
-    flex-direction: column;
+
+    > .left {
+      width: 20%;
+      min-height: 100vh;
+      padding: 2vmax 0;
+    }
+
+    > .right {
+      width: 80%;
+      display: flex;
+      flex-direction: column;
+      gap: 2vmax;
+      padding-left: 1vmax;
+
+      > .top {
+        width: 100%;
+        padding: 1vmax;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: $bg-color-blue;
+        color: $text-color-white;
+        border-radius: 5px;
+
+        > span:nth-child(1) {
+          display: flex;
+          align-items: center;
+          gap: 0.3vmax;
+          font-size: 1rem;
+          font-weight: 600;
+          visibility: hidden;
+          opacity: 0;
+
+          > svg {
+            font-size: 1.2rem;
+          }
+        }
+      }
+
+      > .center {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-auto-rows: 1fr;
+        gap: 1vmax;
+      }
+      > .bottom {
+        width: 100%;
+        z-index: 1;
+      }
+    }
   }
 }
 
@@ -17,6 +67,18 @@
   .products_container {
     > .wrapper {
       width: 95%;
+
+      > .left {
+        width: 25%;
+      }
+      > .right {
+        width: 75%;
+
+        > .center {
+          width: 100%;
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
     }
   }
 }
@@ -26,6 +88,49 @@
   .products_container {
     > .wrapper {
       width: 100%;
+
+      > .left {
+        position: fixed;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        padding: 2vmax 5vmax;
+        z-index: 9999;
+        overflow-y: scroll;
+        background-color: $bg-color-white;
+        width: 0;
+        transition: 300ms ease-in-out;
+        visibility: hidden;
+        opacity: 0;
+
+        > svg {
+          display: block;
+          position: fixed;
+          right: 5%;
+          top: 3%;
+          font-size: 3rem;
+          background-color: $bg-color-lighter-gray;
+          padding: 1vmax;
+          border-radius: 100%;
+          cursor: pointer;
+        }
+      }
+
+      > .right {
+        width: 100%;
+        > .top {
+          > span:nth-child(1) {
+            opacity: 1;
+            visibility: visible;
+          }
+        }
+
+        > .center {
+          width: 100%;
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
     }
   }
 }

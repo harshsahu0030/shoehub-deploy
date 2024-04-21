@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import Breadcrumbs from "../components/Breadcrumbs";
 import WishlistProductCart from "../components/WishlistProductCart";
 import { useEffect } from "react";
 import {
@@ -21,7 +20,6 @@ const Wishlist = () => {
   return (
     <div className="wishlist_container">
       <div className="wrapper">
-        <Breadcrumbs />
         <h1>MY WISHLIST -- {products && products.length} ITEMS</h1>
 
         <div className="wishlist_products">

@@ -15,7 +15,6 @@ import {
 import { toast } from "react-toastify";
 import { CLEAR_ERRORS, CLEAR_MESSAGES } from "../app/constants/userConstant";
 import { Markup } from "interweave";
-import Breadcrumbs from "../components/Breadcrumbs";
 import {
   addCartAction,
   addWishlistAction,
@@ -148,8 +147,6 @@ const Product = () => {
     !loading && (
       <div className="product_container">
         <div className="wrapper">
-          <Breadcrumbs />
-
           {/* product section */}
           <div className="product_section">
             {/* slider */}

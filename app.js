@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 import { v2 as cloudinary } from "cloudinary";
 import path from "path";
 import { fileURLToPath } from "url";
+import cors from "cors";
 
 const app = express();
 
@@ -33,6 +34,11 @@ cloudinary.config({
 //middlewares
 app.use(express.json({ limit: "50mb" }));
 app.use(cookieParser({ extended: true }));
+app.use(
+  cors({
+    credentials: true,
+  })
+);
 
 //import routes
 import userRoute from "./routes/userRoute.js";
