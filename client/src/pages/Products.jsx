@@ -6,6 +6,7 @@ import { getProductsAction } from "../app/actions/productAction";
 import { RiMenuUnfoldLine } from "react-icons/ri";
 import Loader from "../components/Loader";
 import ProductCart from "../components/ProductCart";
+import PaginationCom from "../components/Pagination";
 
 const Products = () => {
   const navigate = useNavigate();
@@ -204,14 +205,14 @@ const Products = () => {
               </div>
 
               <div className="bottom">
-                {/* {products && (
-                  // <PaginationCom
-                  //   products={filteredProductsCount}
-                  //   resultPerPage={resultPerPage}
-                  //   setPage={setPage}
-                  //   page={page}
-                  // />
-                )} */}
+                {products && (
+                  <PaginationCom
+                    products={filteredProductsCount}
+                    resultPerPage={resultPerPage}
+                    setPage={setPage}
+                    page={page}
+                  />
+                )}
               </div>
             </>
           )}
