@@ -85,8 +85,6 @@ export const registerUserVerfiedController = catchAsyncErrors(
       Expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
       HttpOnly: true,
       Secure: true,
-      sameSite: "None",
-      Domain: ".netlify.app",
     };
 
     return res
@@ -130,8 +128,6 @@ export const loginUserController = catchAsyncErrors(async (req, res, next) => {
     Expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
     HttpOnly: true,
     Secure: true,
-    sameSite: "None",
-    Domain: ".netlify.app",
   };
 
   return res

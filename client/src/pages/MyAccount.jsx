@@ -31,7 +31,7 @@ const MyAccount = () => {
       dispatch({ type: CLEAR_MESSAGES });
     }
     if (error) {
-      toast.error(message);
+      toast.error(error);
       dispatch({ type: CLEAR_ERRORS });
     }
   }, [message, error, dispatch, navigate]);

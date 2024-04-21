@@ -10,15 +10,6 @@ import cors from "cors";
 
 const app = express();
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With,Content-Type,Accept"
-  );
-  next();
-});
-
 //dotenv
 if (process.env.NODE_ENV !== "production") {
   dotenv.config({ path: "./config/config.env" });
@@ -33,7 +24,8 @@ cloudinary.config({
 
 //middlewares
 app.use(express.json({ limit: "50mb" }));
-app.use(cookieParser({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 app.use(
   cors({
     credentials: true,
