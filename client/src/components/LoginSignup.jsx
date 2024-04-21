@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUserAction, registerUserAction } from "../app/actions/userAction";
+import Loader from "./Loader";
 
 const LoginSignup = () => {
   const navigate = useNavigate();
@@ -55,36 +56,75 @@ const LoginSignup = () => {
   });
 
   return (
-    !loading && (
-      <div className="login_signup_container">
-        <div className="top">
-          <span
-            className={toggleButton === "login" ? "active" : "unactive"}
-            onClick={() => hangleToggle("login")}
-          >
-            LOGIN
-          </span>
-          <span
-            className={toggleButton === "signup" ? "active" : "unactive"}
-            onClick={() => hangleToggle("signup")}
-          >
-            SIGNUP
-          </span>
-        </div>
+    <div className="login_signup_container">
+      <div className="top">
+        <span
+          className={toggleButton === "login" ? "active" : "unactive"}
+          onClick={() => hangleToggle("login")}
+        >
+          LOGIN
+        </span>
+        <span
+          className={toggleButton === "signup" ? "active" : "unactive"}
+          onClick={() => hangleToggle("signup")}
+        >
+          SIGNUP
+        </span>
+      </div>
 
-        <hr />
+      <hr />
 
-        <div className="wrapper">
-          {toggleButton === "login" ? (
-            <form className="login_form" onSubmit={loginSubmit}>
+      <div className="wrapper">
+        {toggleButton === "login" ? (
+          <form className="login_form" onSubmit={loginSubmit}>
+            <div className="input_single_container">
+              <label htmlFor="email">Email *</label>
+              <input
+                type="email"
+                placeholder="Enter email"
+                name="email"
+                value={loginForm.email}
+                onChange={handleChangeLogin}
+              />
+            </div>
+
+            <div className="input_single_container">
+              <label htmlFor="password">Password *</label>
+              <input
+                type="password"
+                placeholder="Enter password"
+                name="password"
+                value={loginForm.password}
+                onChange={handleChangeLogin}
+              />
+            </div>
+            <button type="submit" disabled={loading}>
+              {loading ? <Loader /> : "LOGIN"}
+            </button>
+            <span>Forgot Password ?</span>
+          </form>
+        ) : (
+          <>
+            <form className="signup_form" onSubmit={signupSubmit}>
+              <div className="input_single_container">
+                <label htmlFor="name">Name *</label>
+                <input
+                  type="text"
+                  placeholder="Enter name"
+                  name="name"
+                  value={signupForm.name}
+                  onChange={handleChangeSignup}
+                />
+              </div>
+
               <div className="input_single_container">
                 <label htmlFor="email">Email *</label>
                 <input
                   type="email"
                   placeholder="Enter email"
                   name="email"
-                  value={loginForm.email}
-                  onChange={handleChangeLogin}
+                  value={signupForm.email}
+                  onChange={handleChangeSignup}
                 />
               </div>
 
@@ -94,62 +134,25 @@ const LoginSignup = () => {
                   type="password"
                   placeholder="Enter password"
                   name="password"
-                  value={loginForm.password}
-                  onChange={handleChangeLogin}
+                  value={signupForm.password}
+                  onChange={handleChangeSignup}
                 />
               </div>
-              <button type="submit">LOGIN</button>
-              <span>Forgot Password ?</span>
+
+              <p>
+                Your personal data will be used to support your experience
+                throughout this website, to manage access to your account, and
+                for other purposes described in our{" "}
+                <Link to="/">privacy policy</Link>.
+              </p>
+              <button type="submit" disabled={loading}>
+                {loading ? <Loader /> : "SIGNUP"}
+              </button>
             </form>
-          ) : (
-            <>
-              <form className="signup_form" onSubmit={signupSubmit}>
-                <div className="input_single_container">
-                  <label htmlFor="name">Name *</label>
-                  <input
-                    type="text"
-                    placeholder="Enter name"
-                    name="name"
-                    value={signupForm.name}
-                    onChange={handleChangeSignup}
-                  />
-                </div>
-
-                <div className="input_single_container">
-                  <label htmlFor="email">Email *</label>
-                  <input
-                    type="email"
-                    placeholder="Enter email"
-                    name="email"
-                    value={signupForm.email}
-                    onChange={handleChangeSignup}
-                  />
-                </div>
-
-                <div className="input_single_container">
-                  <label htmlFor="password">Password *</label>
-                  <input
-                    type="password"
-                    placeholder="Enter password"
-                    name="password"
-                    value={signupForm.password}
-                    onChange={handleChangeSignup}
-                  />
-                </div>
-
-                <p>
-                  Your personal data will be used to support your experience
-                  throughout this website, to manage access to your account, and
-                  for other purposes described in our{" "}
-                  <Link to="/">privacy policy</Link>.
-                </p>
-                <button type="submit">SIGNUP</button>
-              </form>
-            </>
-          )}
-        </div>
+          </>
+        )}
       </div>
-    )
+    </div>
   );
 };
 
