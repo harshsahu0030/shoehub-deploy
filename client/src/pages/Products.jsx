@@ -29,6 +29,7 @@ const Products = () => {
   const [ratings, setRatings] = useState([0, 5]);
   let limit = 10;
 
+
   //ref
   const showRef = useRef();
   const filterMenuVisible = useRef();

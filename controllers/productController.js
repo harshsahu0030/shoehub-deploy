@@ -144,6 +144,8 @@ export const getProductsController = catchAsyncErrors(
       .filter()
       .pagination(resultPerPage);
 
+    products = await apiFeature.query;
+
     res.status(200).json({
       success: true,
       productsCount,
