@@ -22,6 +22,8 @@ const Wishlist = () => {
       <div className="wrapper">
         <h1>MY WISHLIST -- {products && products.length} ITEMS</h1>
 
+        <hr />
+
         <div className="wishlist_products">
           {products && products.length > 0 ? (
             products.map((item, i) => (

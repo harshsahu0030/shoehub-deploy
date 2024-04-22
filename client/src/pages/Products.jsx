@@ -1,6 +1,6 @@
 import Products_Section01 from "../components/Products_Section01";
-import { useEffect, useRef, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useMemo, useRef, useState } from "react";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductsAction } from "../app/actions/productAction";
 import { RiMenuUnfoldLine } from "react-icons/ri";
@@ -11,6 +11,7 @@ import PaginationCom from "../components/Pagination";
 const Products = () => {
   const navigate = useNavigate();
   const { gender: paramsGender, category: paramsCategory } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   //redux
   const dispatch = useDispatch();
@@ -44,6 +45,10 @@ const Products = () => {
 
   const handleReset = () => {
     navigate(`/products`);
+    setCategory([]);
+    setBrand([]);
+    setDiscount(0);
+    setColor([]);
   };
 
   const handlefilterMenuVisible = (text) => {
@@ -69,22 +74,26 @@ const Products = () => {
   };
 
   const handleCheckCategory = (cat) => {
-    let newArr = [...category];
     if (category.includes(cat)) {
+      let newArr = [...category];
       newArr.splice(newArr.indexOf(cat), 1);
       setCategory(newArr);
+      setBrand([]);
     } else {
-      setCategory((prev) => [...prev, cat]);
+      let newArr = [...category, cat];
+      setCategory(newArr);
+      setBrand([]);
     }
   };
 
   const handleCheckBrand = (bnd) => {
-    let newArr = [...brand];
     if (brand.includes(bnd)) {
+      let newArr = [...brand];
       newArr.splice(newArr.indexOf(bnd), 1);
       setBrand(newArr);
     } else {
-      setBrand((prev) => [...prev, bnd]);
+      let newArr = [...brand, bnd];
+      setBrand(newArr);
     }
   };
 
@@ -98,7 +107,7 @@ const Products = () => {
     }
   };
 
-  useEffect(() => {
+  useMemo(() => {
     if (paramsGender) {
       setGender(paramsGender);
     } else {
@@ -111,10 +120,44 @@ const Products = () => {
     } else {
       setCategory([]);
     }
-  }, [paramsGender, paramsCategory]);
+
+    if (searchParams.get("cat")) {
+      setCategory(searchParams.get("cat").split("%3"));
+    }
+
+    if (searchParams.get("bnd")) {
+      setBrand(searchParams.get("bnd").split("%3"));
+    }
+
+    if (searchParams.get("clr")) {
+      setColor(searchParams.get("clr").split("%3"));
+    }
+
+    if (searchParams.get("dis")) {
+      setDiscount(searchParams.get("dis"));
+    }
+
+    if (searchParams.get("p")) {
+      setPage(searchParams.get("p"));
+    }
+  }, [paramsGender, paramsCategory, searchParams]);
+
+  useMemo(() => {
+    setSearchParams({
+      cat: category.join("%3"),
+      bnd: brand.join("%3"),
+      clr: color.join("%3"),
+      ph: price[0],
+      pl: price[1],
+      rh: ratings[0],
+      rl: ratings[1],
+      dis: discount,
+      p: page,
+    });
+  }, [setSearchParams, category, brand, color, discount, page, price, ratings]);
 
   // useEffect
-  useEffect(() => {
+  useMemo(() => {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 
@@ -182,6 +225,8 @@ const Products = () => {
             filteredProductsCount={filteredProductsCount}
             loading={loading}
             brands={brands}
+            searchParams={searchParams}
+            setSearchParams={setSearchParams}
           />
         </div>
 

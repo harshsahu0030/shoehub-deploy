@@ -53,7 +53,6 @@ const Products_Section01 = ({
                     onChange={() => {
                       setGender(item.gender);
                       setCategory([]);
-                      name;
                       navigate(`/products/${item.gender}`);
                     }}
                     checked={gender === item.gender}

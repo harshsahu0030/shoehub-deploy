@@ -1,7 +1,7 @@
 import Pagination from "@mui/material/Pagination";
 import propTypes from "prop-types";
 
-const PaginationCom = ({ products, resultPerPage, setPage, page }) => {
+const PaginationCom = ({ products, resultPerPage, page, setPage }) => {
   return (
     <Pagination
       style={{
@@ -21,8 +21,8 @@ const PaginationCom = ({ products, resultPerPage, setPage, page }) => {
 PaginationCom.propTypes = {
   products: propTypes.number,
   page: propTypes.number,
-  resultPerPage: propTypes.string,
   setPage: propTypes.func,
+  resultPerPage: propTypes.string,
 };
 
 export default PaginationCom;

@@ -2,12 +2,13 @@
   width: 100%;
   min-height: 80vh;
   display: flex;
+  margin-top: 3vmax;
 
   > .wrapper {
     height: 100%;
     width: 85%;
     gap: 1vmax;
-    margin: auto;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
 
@@ -29,7 +30,7 @@
     > .wrapper {
       width: 95%;
 
-      > div {
+      > .wishlist_products {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 2vmax;
@@ -44,7 +45,7 @@
     > .wrapper {
       width: 95%;
 
-      > div {
+      > .wishlist_products {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 2vmax;

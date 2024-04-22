@@ -51,7 +51,7 @@ export const getProductsAction =
         }${price && `&price[gte]=${price[0]}&price[lte]=${price[1]}`}${
           ratings &&
           `&ratings[gte]=${ratings[0]}&ratings[lte]=${ratings[1]}${
-            discount && `&discount=${discount}`
+            discount && `&discount[gte]=${discount}`
           }&page=${page}&limit=${limit}`
         }`
       );
