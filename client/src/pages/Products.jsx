@@ -198,20 +198,25 @@ const Products = () => {
                 </span>
               </div>
               <div className="center">
-                {products &&
+                {products ? (
                   products.map((item, i) => (
                     <ProductCart key={i} product={item} />
-                  ))}
+                  ))
+                ) : (
+                  <Loader />
+                )}
               </div>
 
               <div className="bottom">
-                {products && (
+                {products ? (
                   <PaginationCom
                     products={filteredProductsCount}
                     resultPerPage={resultPerPage}
                     setPage={setPage}
                     page={page}
                   />
+                ) : (
+                  <Loader />
                 )}
               </div>
             </>

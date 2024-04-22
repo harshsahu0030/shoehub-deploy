@@ -34,13 +34,24 @@ class ApiFeatures {
     return this;
   }
 
+  brands() {
+    const brand = this.queryStr.brand
+      ? {
+          brand: {
+            $in: this.queryStr.brand.split(","),
+          },
+        }
+      : {};
+
+    this.query = this.query.find({ ...brand });
+    return this;
+  }
+
   multiFilters() {
     const category = this.queryStr.category
       ? {
           category: {
             $in: this.queryStr.category.split(","),
-            $regex: this.queryStr.category,
-            $options: "i",
           },
         }
       : {};
@@ -49,8 +60,6 @@ class ApiFeatures {
       ? {
           brand: {
             $in: this.queryStr.brand.split(","),
-            $regex: this.queryStr.brand,
-            $options: "i",
           },
         }
       : {};
@@ -59,13 +68,11 @@ class ApiFeatures {
       ? {
           "color.name": {
             $in: this.queryStr.color.split(","),
-            $regex: this.queryStr.color,
-            $options: "i",
           },
         }
       : {};
 
-    this.query = this.query.find({ ...category, ...brand, ...color });
+    this.query = this.query.find({ ...category, ...color });
     return this;
   }
 

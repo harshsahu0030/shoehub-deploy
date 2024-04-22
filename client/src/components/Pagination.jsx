@@ -1,23 +1,27 @@
 import Pagination from "@mui/material/Pagination";
-import Stack from "@mui/material/Stack";
 import propTypes from "prop-types";
 
-const PaginationCom = ({ products, resultPerPage, setPage }) => {
+const PaginationCom = ({ products, resultPerPage, setPage, page }) => {
   return (
-    <Stack spacing={2}>
-      <Pagination
-        count={Math.ceil(products / resultPerPage)}
-        onChange={(e) => setPage(e.target.innerText)}
-        variant="outlined"
-        shape="rounded"
-      />
-    </Stack>
+    <Pagination
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+      defaultPage={page}
+      count={Math.ceil(products / resultPerPage)}
+      onChange={(e, value) => setPage(value)}
+      variant="outlined"
+      color="primary"
+    />
   );
 };
 
 PaginationCom.propTypes = {
   products: propTypes.number,
-  resultPerPage: propTypes.number,
+  page: propTypes.number,
+  resultPerPage: propTypes.string,
   setPage: propTypes.func,
 };
 

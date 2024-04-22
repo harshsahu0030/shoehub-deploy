@@ -36,10 +36,10 @@ export const getProductsReducer = (state = {}, action) => {
     case GET_PRODUCTS_SUCCESS:
       return {
         loading: false,
-        products: action.payload.products,
         productsCount: action.payload.productsCount,
         resultPerPage: action.payload.resultPerPage,
         filteredProductsCount: action.payload.filteredProductsCount,
+        products: action.payload.products,
       };
 
     case GET_PRODUCTS_FAIL:

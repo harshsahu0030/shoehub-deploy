@@ -16,21 +16,13 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import OtpVerification from "./pages/OtpVerification";
 import SearchPage from "./pages/SearchPage";
-import axios from "axios";
 
 const App = () => {
-  const getCookie = () => {
-    axios.get("/api/v1", { withCredentials: true }).then((res) => {
-      console.log(`cookie ${res.data}`);
-    });
-  };
-
   //redux
   const dispatch = useDispatch();
 
   //useEffect
   useEffect(() => {
-    getCookie();
     dispatch(loadUserAction());
   }, [dispatch]);
   return (

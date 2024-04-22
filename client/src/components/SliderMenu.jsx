@@ -6,8 +6,11 @@ import { IoChevronDownSharp, IoChevronUpSharp } from "react-icons/io5";
 import propTypes from "prop-types";
 import { useEffect, useRef, useState } from "react";
 import Categories from "./Categories";
+import { useNavigate } from "react-router-dom";
 
 const SliderMenu = ({ setToggleSideMenu, toggleSideMenu }) => {
+  const navigate = useNavigate();
+
   //state
   const [toggleGender, setToggleGender] = useState("");
 
@@ -64,10 +67,26 @@ const SliderMenu = ({ setToggleSideMenu, toggleSideMenu }) => {
                     {Categories && (
                       <>
                         <ul>
+                          <li
+                            onClick={() => {
+                              navigate(`/products/${item.gender}`);
+                              setToggleSideMenu();
+                            }}
+                          >
+                            {toggleGender}
+                          </li>
                           {categories
-                            .find((g) => g.gender === "men")
+                            .find((g) => g.gender === toggleGender)
                             .types.map((item, i) => (
-                              <li key={i}>{item}</li>
+                              <li
+                                onClick={() => {
+                                  navigate(`/products/men/${item}`);
+                                  setToggleSideMenu();
+                                }}
+                                key={i}
+                              >
+                                {item}
+                              </li>
                             ))}
                         </ul>
                       </>

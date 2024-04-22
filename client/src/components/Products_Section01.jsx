@@ -1,6 +1,6 @@
 import { categories, colorPallets, products_discount } from "../data/category";
 import { FaCircle } from "react-icons/fa";
-
+import propTypes from "prop-types";
 import Slider from "@mui/material/Slider";
 import { IoCloseSharp } from "react-icons/io5";
 import { IoClose } from "react-icons/io5";
@@ -12,20 +12,12 @@ const Products_Section01 = ({
   category,
   setCategory,
   brand,
-  setBrand,
-  color,
-  setColor,
   price,
-  setPrice,
   ratings,
-  setRatings,
   discount,
   setDiscount,
-  page,
-  setPage,
   colorSlice,
   setColorSlice,
-  limit,
   handleCheckColor,
   handleCheckBrand,
   handleCheckCategory,
@@ -33,13 +25,10 @@ const Products_Section01 = ({
   handleReset,
   handleRatingChange,
   handlePriceChange,
-  filterMenuVisible,
   showRef,
   handlefilterMenuVisible,
   products,
-  resultPerPage,
   filteredProductsCount,
-  loading,
 }) => {
   const navigate = useNavigate();
 
@@ -60,7 +49,6 @@ const Products_Section01 = ({
                 <div className="input_radio_container">
                   <input
                     type="radio"
-                    name="gender"
                     onChange={() => {
                       setGender(item.gender);
                       setCategory([]);
@@ -68,7 +56,7 @@ const Products_Section01 = ({
                     }}
                     checked={gender === item.gender}
                   />
-                  <label htmlFor="">{item.gender}</label>
+                  <label htmlFor={item.gender}>{item.gender}</label>
                 </div>
               </li>
             ))}
@@ -92,7 +80,7 @@ const Products_Section01 = ({
                     checked={category.includes(item)}
                     onChange={() => handleCheckCategory(item)}
                   />
-                  <label htmlFor="">{item}</label>
+                  <label htmlFor={item}>{item}</label>
                 </div>
               </li>
             ))}
@@ -118,7 +106,7 @@ const Products_Section01 = ({
                       checked={category.includes(item)}
                       onChange={() => handleCheckCategory(item)}
                     />
-                    <label htmlFor="">{item}</label>
+                    <label htmlFor={item}>{item}</label>
                   </div>
                 </li>
               ))}
@@ -141,7 +129,7 @@ const Products_Section01 = ({
                     checked={brand.includes(item)}
                     onChange={() => handleCheckBrand(item)}
                   />
-                  <label htmlFor="">{item}</label>
+                  <label htmlFor={item}>{item}</label>
                 </div>
               </li>
             )
@@ -213,7 +201,6 @@ const Products_Section01 = ({
                   <input
                     type="checkbox"
                     value={item.name}
-                    name="color"
                     onChange={() => {
                       handleCheckColor(item.name);
                     }}
@@ -223,7 +210,7 @@ const Products_Section01 = ({
                       color: `rgb(${item.color.R},${item.color.G},${item.color.B})`,
                     }}
                   />
-                  <label htmlFor="">{item.name}</label>
+                  <label htmlFor={item.name}>{item.name}</label>
                 </div>
               </li>
             ))}
@@ -243,11 +230,10 @@ const Products_Section01 = ({
                 <div className="input_checkbox_container">
                   <input
                     type="radio"
-                    name="discount"
                     onChange={() => setDiscount(item.value)}
                     checked={discount === item.value}
                   />
-                  <label htmlFor="">{item.name}</label>
+                  <label htmlFor={item.name}>{item.name}</label>
                 </div>
               </li>
             ))}
@@ -255,6 +241,31 @@ const Products_Section01 = ({
       </div>
     </div>
   );
+};
+
+Products_Section01.propTypes = {
+  gender: propTypes.string,
+  setGender: propTypes.func,
+  category: propTypes.array,
+  setCategory: propTypes.func,
+  brand: propTypes.array,
+  price: propTypes.array,
+  ratings: propTypes.array,
+  discount: propTypes.number,
+  setDiscount: propTypes.func,
+  colorSlice: propTypes.bool,
+  setColorSlice: propTypes.func,
+  handleCheckColor: propTypes.func,
+  handleCheckBrand: propTypes.func,
+  handleCheckCategory: propTypes.func,
+  handleVisible: propTypes.func,
+  handleReset: propTypes.func,
+  handleRatingChange: propTypes.func,
+  handlePriceChange: propTypes.func,
+  showRef: propTypes.object,
+  handlefilterMenuVisible: propTypes.func,
+  products: propTypes.array,
+  filteredProductsCount: propTypes.number,
 };
 
 export default Products_Section01;

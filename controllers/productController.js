@@ -118,13 +118,13 @@ export const getProductsController = catchAsyncErrors(
 
     let products = await apiFeature.query;
 
-    let filteredProductsCount = products.length;
+    let brands = [...new Set(products && products.map((o) => o.brand))];
 
     apiFeature = new ApiFeatures(ProductModel.find(), req.query)
       .search()
+      .brands()
       .multiFilters()
-      .filter()
-      .pagination(resultPerPage);
+      .filter();
 
     if (req.query.sort) {
       let sort = req.query.sort.split(",")[0];
@@ -134,6 +134,15 @@ export const getProductsController = catchAsyncErrors(
     } else {
       products = await apiFeature.query;
     }
+
+    let filteredProductsCount = products.length;
+
+    apiFeature = new ApiFeatures(ProductModel.find(), req.query)
+      .search()
+      .multiFilters()
+      .brands()
+      .filter()
+      .pagination(resultPerPage);
 
     res.status(200).json({
       success: true,

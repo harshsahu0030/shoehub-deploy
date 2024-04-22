@@ -89,6 +89,11 @@
               cursor: pointer;
               width: 100%;
 
+              &:nth-child(1) {
+                font-weight: 700;
+                text-transform: uppercase;
+              }
+
               &:hover {
                 background-color: $bg-color-lighter-gray;
               }
