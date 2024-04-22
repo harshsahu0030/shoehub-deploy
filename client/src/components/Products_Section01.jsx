@@ -5,6 +5,7 @@ import Slider from "@mui/material/Slider";
 import { IoCloseSharp } from "react-icons/io5";
 import { IoClose } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
+import Loader from "./Loader";
 
 const Products_Section01 = ({
   gender,
@@ -27,8 +28,8 @@ const Products_Section01 = ({
   handlePriceChange,
   showRef,
   handlefilterMenuVisible,
-  products,
   filteredProductsCount,
+  brands,
 }) => {
   const navigate = useNavigate();
 
@@ -52,6 +53,7 @@ const Products_Section01 = ({
                     onChange={() => {
                       setGender(item.gender);
                       setCategory([]);
+                      name;
                       navigate(`/products/${item.gender}`);
                     }}
                     checked={gender === item.gender}
@@ -119,8 +121,8 @@ const Products_Section01 = ({
       <div>
         <h4>BRAND</h4>
         <ul>
-          {[...new Set(products && products.map((o) => o.brand))].map(
-            (item, i) => (
+          {brands ? (
+            brands.map((item, i) => (
               <li key={i}>
                 <div className="input_checkbox_container">
                   <input
@@ -132,7 +134,9 @@ const Products_Section01 = ({
                   <label htmlFor={item}>{item}</label>
                 </div>
               </li>
-            )
+            ))
+          ) : (
+            <Loader />
           )}
         </ul>
       </div>
@@ -246,6 +250,7 @@ const Products_Section01 = ({
 Products_Section01.propTypes = {
   gender: propTypes.string,
   setGender: propTypes.func,
+  brands: propTypes.array,
   category: propTypes.array,
   setCategory: propTypes.func,
   brand: propTypes.array,

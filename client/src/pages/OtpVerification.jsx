@@ -36,7 +36,8 @@ const OtpVerification = () => {
 
   return (
     !loading && (
-      <div className="otp_verfication_container">
+      <div className="
+      ">
         <form className="otp_form" onSubmit={handleRegisterUserVerified}>
           <h3>OTP VERIFICATION</h3>
 

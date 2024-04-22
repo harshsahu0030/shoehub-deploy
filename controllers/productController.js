@@ -152,6 +152,7 @@ export const getProductsController = catchAsyncErrors(
       resultPerPage,
       filteredProductsCount,
       queries: req.query,
+      brands,
       products,
     });
   }

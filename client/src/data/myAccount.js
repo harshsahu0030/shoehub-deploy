@@ -2,7 +2,7 @@ export const myAccount = {
   navbar: [
     {
       name: "dashboard",
-      url: "/my-account/dashboard",
+      url: "/my-account/",
     },
     {
       name: "recent-orders",

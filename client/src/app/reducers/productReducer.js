@@ -40,6 +40,7 @@ export const getProductsReducer = (state = {}, action) => {
         resultPerPage: action.payload.resultPerPage,
         filteredProductsCount: action.payload.filteredProductsCount,
         products: action.payload.products,
+        brands: action.payload.brands,
       };
 
     case GET_PRODUCTS_FAIL:

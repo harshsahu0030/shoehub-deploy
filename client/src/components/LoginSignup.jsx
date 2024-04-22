@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUserAction, registerUserAction } from "../app/actions/userAction";
-import Loader from "./Loader";
 
 const LoginSignup = () => {
   const navigate = useNavigate();
@@ -99,7 +98,7 @@ const LoginSignup = () => {
               />
             </div>
             <button type="submit" disabled={loading}>
-              {loading ? <Loader /> : "LOGIN"}
+              {loading ? "loading..." : "LOGIN"}
             </button>
             <span>Forgot Password ?</span>
           </form>
@@ -146,7 +145,7 @@ const LoginSignup = () => {
                 <Link to="/">privacy policy</Link>.
               </p>
               <button type="submit" disabled={loading}>
-                {loading ? <Loader /> : "SIGNUP"}
+                {loading ? "loading..." : "SIGNUP"}
               </button>
             </form>
           </>

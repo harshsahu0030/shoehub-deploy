@@ -14,7 +14,7 @@ const Products = () => {
 
   //redux
   const dispatch = useDispatch();
-  const { products, resultPerPage, filteredProductsCount, loading } =
+  const { products, resultPerPage, filteredProductsCount, loading, brands } =
     useSelector((state) => state.getProducts);
 
   //states
@@ -28,7 +28,6 @@ const Products = () => {
   const [price, setPrice] = useState([100, 50000]);
   const [ratings, setRatings] = useState([0, 5]);
   let limit = 10;
-
 
   //ref
   const showRef = useRef();
@@ -182,6 +181,7 @@ const Products = () => {
             resultPerPage={resultPerPage}
             filteredProductsCount={filteredProductsCount}
             loading={loading}
+            brands={brands}
           />
         </div>
 
