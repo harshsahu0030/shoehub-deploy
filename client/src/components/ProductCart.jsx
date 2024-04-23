@@ -11,6 +11,7 @@ import { addWishlistAction } from "../app/actions/userAction";
 import { toast } from "react-toastify";
 import { CLEAR_ERRORS, CLEAR_MESSAGES } from "../app/constants/userConstant";
 import Loader from "./Loader";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const ProductCart = ({ product }) => {
   const navigate = useNavigate();
@@ -56,7 +57,7 @@ const ProductCart = ({ product }) => {
       ) : (
         <>
           <div className="top">
-            <img src={product.images[0].url} alt="img" />
+            <LazyLoadImage src={product.images[0].url} alt="img" />
             <div className="left">
               <span className="discount">{product.discount}%</span>
             </div>

@@ -12,6 +12,7 @@ import {
   getTrendingProductsAction,
 } from "../app/actions/productAction";
 import Loader from "./Loader";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const Home_Section01 = () => {
   const navigate = useNavigate();
@@ -41,7 +42,7 @@ const Home_Section01 = () => {
         <div className="vertical_banners">
           {homeData.banner.vertical &&
             homeData.banner.vertical.map((item, i) => (
-              <img
+              <LazyLoadImage
                 key={i}
                 src={item.img}
                 alt="banner"
@@ -106,8 +107,8 @@ const Home_Section01 = () => {
         <Products_Slider products={trendingProducts} />
 
         <div className="split_banners">
-          <img src={homeData.banner.small[0]} alt="banner" />
-          <img src={homeData.banner.small[1]} alt="banner" />
+          <LazyLoadImage src={homeData.banner.small[0]} alt="banner" />
+          <LazyLoadImage src={homeData.banner.small[1]} alt="banner" />
         </div>
 
         <Section_heading
@@ -120,8 +121,8 @@ const Home_Section01 = () => {
         <Products_Slider products={topRatedProducts} />
 
         <div className="split_banners">
-          <img src={homeData.banner.small[2]} alt="banner" />
-          <img src={homeData.banner.small[3]} alt="banner" />
+          <LazyLoadImage src={homeData.banner.small[2]} alt="banner" />
+          <LazyLoadImage src={homeData.banner.small[3]} alt="banner" />
         </div>
       </div>
     </div>

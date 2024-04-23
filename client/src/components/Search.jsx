@@ -3,6 +3,7 @@ import { RiSearch2Line } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { getSearchProductsAction } from "../app/actions/productAction";
 import { useNavigate } from "react-router-dom";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const Search = () => {
   const navigate = useNavigate();
@@ -54,7 +55,7 @@ const Search = () => {
             ? products.slice(0, 10).map((item, i) => (
                 <li key={i}>
                   <div className="left">
-                    <img src={item.images[0].url} alt="" />
+                    <LazyLoadImage src={item.images[0].url} alt="" />
                   </div>
                   <div
                     className="right"

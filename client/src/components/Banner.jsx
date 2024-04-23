@@ -13,6 +13,7 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Autoplay, Pagination } from "swiper/modules";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const Banner = () => {
   return (
@@ -33,16 +34,16 @@ const Banner = () => {
           className="mySwiper"
         >
           <SwiperSlide>
-            <img src={Banner04} alt="Banner" />
+            <LazyLoadImage src={Banner04} alt="Banner" />
           </SwiperSlide>
           <SwiperSlide>
-            <img src={Banner02} alt="Banner" />
+            <LazyLoadImage src={Banner02} alt="Banner" />
           </SwiperSlide>
           <SwiperSlide>
-            <img src={Banner03} alt="Banner" />
+            <LazyLoadImage src={Banner03} alt="Banner" />
           </SwiperSlide>
           <SwiperSlide>
-            <img src={Banner01} alt="Banner" />
+            <LazyLoadImage src={Banner01} alt="Banner" />
           </SwiperSlide>
         </Swiper>
       </div>

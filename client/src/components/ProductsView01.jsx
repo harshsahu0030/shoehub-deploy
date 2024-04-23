@@ -1,4 +1,5 @@
 import propTypes from "prop-types";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useNavigate } from "react-router-dom";
 
 const ProductsView01 = ({ product }) => {
@@ -6,7 +7,7 @@ const ProductsView01 = ({ product }) => {
   return (
     <div className="products_view_container">
       <div className="left">
-        <img src={product.images[0].url} alt="img" />
+        <LazyLoadImage src={product.images[0].url} alt="img" />
       </div>
       <div className="right">
         <div className="heading">

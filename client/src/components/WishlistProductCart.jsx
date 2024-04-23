@@ -9,6 +9,7 @@ import {
 import { useMemo } from "react";
 import { toast } from "react-toastify";
 import { CLEAR_ERRORS, CLEAR_MESSAGES } from "../app/constants/userConstant";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const WishlistProductCart = ({ product }) => {
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ const WishlistProductCart = ({ product }) => {
     product && (
       <div className="wishlist_product_cart_container">
         <div className="top">
-          <img src={product.images[0].url} alt="img" />
+          <LazyLoadImage src={product.images[0].url} alt="img" />
         </div>
         <div className="center">
           <div className="heading">

@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import propTypes from "prop-types";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const ImageSlider = ({ images }) => {
   //state
@@ -10,7 +11,7 @@ const ImageSlider = ({ images }) => {
     <div className="image_slider_container">
       <div className="left">
         {images.map((img, index) => (
-          <img
+          <LazyLoadImage
             key={index}
             src={img.url}
             alt="img"
@@ -21,7 +22,7 @@ const ImageSlider = ({ images }) => {
       </div>
       <div className="right">
         {images.map((img, index) => (
-          <img
+          <LazyLoadImage
             key={index}
             src={img.url}
             alt="img"

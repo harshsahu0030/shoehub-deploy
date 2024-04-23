@@ -234,7 +234,7 @@ const Products_Section01 = ({
                   <input
                     type="radio"
                     onChange={() => setDiscount(item.value)}
-                    checked={discount === item.value}
+                    checked={parseInt(discount) === parseInt(item.value)}
                   />
                   <label htmlFor={item.name}>{item.name}</label>
                 </div>

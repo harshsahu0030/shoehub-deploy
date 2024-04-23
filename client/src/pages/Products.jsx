@@ -1,5 +1,5 @@
 import Products_Section01 from "../components/Products_Section01";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductsAction } from "../app/actions/productAction";
@@ -107,6 +107,7 @@ const Products = () => {
     }
   };
 
+  //use Memo
   useMemo(() => {
     if (paramsGender) {
       setGender(paramsGender);
@@ -142,7 +143,7 @@ const Products = () => {
     }
   }, [paramsGender, paramsCategory, searchParams]);
 
-  useMemo(() => {
+  useEffect(() => {
     setSearchParams({
       cat: category.join("%3"),
       bnd: brand.join("%3"),
@@ -203,7 +204,7 @@ const Products = () => {
             setPrice={setPrice}
             ratings={ratings}
             setRatings={setRatings}
-            discount={discount}
+            discount={parseInt(discount)}
             setDiscount={setDiscount}
             page={page}
             setPage={setPage}
@@ -259,7 +260,7 @@ const Products = () => {
                     products={filteredProductsCount}
                     resultPerPage={resultPerPage}
                     setPage={setPage}
-                    page={page}
+                    page={parseInt(page)}
                   />
                 ) : (
                   <Loader />
