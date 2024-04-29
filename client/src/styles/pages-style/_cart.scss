@@ -28,18 +28,6 @@
       flex-direction: column;
       gap: 2vmax;
 
-      > h2 {
-        display: flex;
-        align-items: center;
-        font-size: 1.3rem;
-        font-weight: 700;
-
-        > span {
-          font-size: 0.9rem;
-          font-weight: 500;
-        }
-      }
-
       > table {
         width: 100%;
         height: 100%;
@@ -119,6 +107,22 @@
         padding: 1vmax 0;
       }
 
+      > button {
+        width: 100%;
+        padding: 0.8vmax 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 2vmax;
+        border-radius: 5px;
+        border: none;
+        color: $text-color-white;
+        background-color: $bg-color-blue;
+        font-weight: 600;
+        font-size: 0.9rem;
+        cursor: pointer;
+      }
+
       > div {
         display: flex;
         align-items: center;
@@ -140,9 +144,10 @@
           display: flex;
           flex-direction: column;
           gap: 0.5vmax;
+          text-align: end;
 
           > span:nth-child(2) {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             font-weight: 600;
             text-decoration: underline;
             color: $text-color-blue;

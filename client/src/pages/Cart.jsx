@@ -36,7 +36,7 @@ const Cart = () => {
       })
     );
 
-    dispatch(getCartUserAction());
+    await dispatch(getCartUserAction());
   };
 
   const handleUpdateQuantity = async (id, value) => {
@@ -46,12 +46,12 @@ const Cart = () => {
         quantity: value,
       })
     );
-    dispatch(getCartUserAction());
+    await dispatch(getCartUserAction());
   };
 
   const handleRemoveProductfromCart = async (id) => {
     await dispatch(removeCartAction(id));
-    dispatch(getCartUserAction());
+    await dispatch(getCartUserAction());
   };
 
   //useMemo
@@ -73,21 +73,20 @@ const Cart = () => {
 
   useEffect(() => {
     if (products) {
-      setSubTotal(
-        products
-          .filter(
-            (item) =>
-              item.product.sizes.find((s) => s.size === item.size).stock >
-              item.quantity
-          )
-          .map((item) => item.product.price * item.quantity)
-          .reduce((acc, curr) => (acc += curr), 0)
-      );
-    }
+      let shipp = 0;
+      let temp = products
+        .filter(
+          (item) =>
+            item.product.sizes.find((s) => s.size === item.size).stock >
+            item.quantity
+        )
+        .map((item) => item.product.price * item.quantity)
+        .reduce((acc, curr) => (acc += curr), 0);
 
-    if (subTotal > 0) {
-      setShippingCharges(150);
-      setTotal(subTotal + shippingCharges);
+      setSubTotal(temp);
+      temp < 3500 ? (temp === 0 ? 0 : (shipp = 150)) : 0;
+      setShippingCharges(shipp);
+      setTotal(() => temp + shipp);
     }
   }, [products, subTotal, shippingCharges]);
   return (
@@ -95,7 +94,6 @@ const Cart = () => {
       <div className="wrapper">
         <div className="left">
           {/* IN STOCK */}
-          <h2>IN STOCK</h2>
           <table>
             <thead>
               <tr>
@@ -210,6 +208,7 @@ const Cart = () => {
             <h5>Shipping</h5>
             <span className="shipping_address">
               <span>₹ {shippingCharges}</span>
+              <span>Change Address</span>
             </span>
           </div>
           <hr />
@@ -217,6 +216,8 @@ const Cart = () => {
             <h5>Total</h5>
             <span className="total_value">₹ {total}</span>
           </div>
+
+          <button>PLACE ORDER</button>
         </div>
       </div>
     </div>
