@@ -20,6 +20,7 @@ const Product = lazy(() => import("./pages/Product"));
 const Cart = lazy(() => import("./pages/Cart"));
 const Wishlist = lazy(() => import("./pages/Wishlist"));
 const SearchPage = lazy(() => import("./pages/SearchPage"));
+const ErrorPage = lazy(() => import("./pages/ErrorPage"));
 
 const App = () => {
   //redux
@@ -56,6 +57,7 @@ const App = () => {
         <section className="routes_section">
           <Routes>
             <Route path="/" element={<Home />} />
+
             <Route path="/search" element={<SearchPage />} />
 
             <Route path="/my-account/:pathname" element={<MyAccount />} />
@@ -80,6 +82,8 @@ const App = () => {
             <Route path="/cart" element={<Cart />} />
 
             <Route path="/wishlist" element={<Wishlist />} />
+
+            <Route path="*" element={<ErrorPage />} />
           </Routes>
         </section>
         <footer>

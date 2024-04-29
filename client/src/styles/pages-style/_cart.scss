@@ -2,14 +2,159 @@
   width: 100%;
   display: flex;
   min-height: 80vh;
+  margin-top: 3vmax;
 
   > .wrapper {
     height: 100%;
     width: 85%;
     gap: 1vmax;
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+
+    .disabled {
+      pointer-events: none;
+      background-color: $bg-color-lighter-gray;
+      color: $text-color-gray;
+    }
+
+    > .left {
+      padding: 1vmax;
+      height: max-content;
+      width: 100%;
+      border: 1px solid $bg-color-lighter-gray;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      gap: 2vmax;
+
+      > h2 {
+        display: flex;
+        align-items: center;
+        font-size: 1.3rem;
+        font-weight: 700;
+
+        > span {
+          font-size: 0.9rem;
+          font-weight: 500;
+        }
+      }
+
+      > table {
+        width: 100%;
+        height: 100%;
+
+        > thead {
+          > tr {
+            > th {
+              font-size: 0.9rem;
+              font-weight: 600;
+              color: $text-color-gray;
+            }
+          }
+        }
+
+        > tbody {
+          > tr {
+            > td {
+              padding: 1vmax 0.5vmax;
+              text-align: center;
+              font-size: 0.8rem;
+
+              > span {
+                height: 100%;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                gap: 0.5vmax;
+                font-weight: 500;
+
+                > select {
+                  font-weight: 500;
+                  font-size: 0.8rem;
+                }
+
+                > svg {
+                  font-size: 1.2rem;
+                  padding: 0.3rem;
+                  background-color: $bg-color-lighter-gray;
+                  border-radius: 100%;
+                  cursor: pointer;
+
+                  &:hover {
+                    background-color: $bg-color-blue;
+                  }
+                }
+              }
+
+              > img {
+                height: 10vh;
+                object-fit: contain;
+              }
+
+              > svg {
+                font-size: 1.2rem;
+                cursor: pointer;
+
+                &:hover {
+                  color: $text-color-red;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    > .right {
+      height: max-content;
+      width: 100%;
+      padding: 1vmax;
+      border: 1px solid $bg-color-lighter-gray;
+      border-radius: 5px;
+
+      > h3 {
+        font-size: 1.3rem;
+        font-weight: 800;
+        padding: 1vmax 0;
+      }
+
+      > div {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1vmax 0;
+        font-weight: 500;
+
+        > h5 {
+          font-size: 1rem;
+          font-weight: 600;
+        }
+
+        > .total_value {
+          font-size: 1.3rem;
+          font-weight: 600;
+        }
+
+        .shipping_address {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5vmax;
+
+          > span:nth-child(2) {
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: underline;
+            color: $text-color-blue;
+            cursor: pointer;
+          }
+        }
+
+        > span {
+          font-size: 1rem;
+        }
+      }
+    }
   }
 }
 
@@ -27,6 +172,7 @@
   .cart_container {
     > .wrapper {
       width: 95%;
+      grid-template-columns: 1fr;
     }
   }
 }

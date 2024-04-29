@@ -30,6 +30,9 @@ import {
   REMOVE_WISHLIST_PRODUCT_FAIL,
   REMOVE_WISHLIST_PRODUCT_REQUEST,
   REMOVE_WISHLIST_PRODUCT_SUCCESS,
+  UPDATE_CART_PRODUCT_FAIL,
+  UPDATE_CART_PRODUCT_REQUEST,
+  UPDATE_CART_PRODUCT_SUCCESS,
   VERIFIED_REGISTER_USER_FAIL,
   VERIFIED_REGISTER_USER_REQUEST,
   VERIFIED_REGISTER_USER_SUCCESS,
@@ -225,6 +228,33 @@ export const addCartAction =
     } catch (error) {
       dispatch({
         type: ADD_CART_PRODUCT_FAIL,
+        payload: error.response.data.message,
+      });
+    }
+  };
+
+// update Cart
+export const updateCartProductAction =
+  ({ id, size, quantity }) =>
+  async (dispatch) => {
+    try {
+      dispatch({ type: UPDATE_CART_PRODUCT_REQUEST });
+
+      const config = { headers: { "Content-Type": "application/json" } };
+
+      const { data } = await axios.put(
+        `/api/v1/cart/update/${id}`,
+        {
+          size,
+          quantity,
+        },
+        config
+      );
+
+      dispatch({ type: UPDATE_CART_PRODUCT_SUCCESS, payload: data });
+    } catch (error) {
+      dispatch({
+        type: UPDATE_CART_PRODUCT_FAIL,
         payload: error.response.data.message,
       });
     }

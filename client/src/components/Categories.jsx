@@ -82,7 +82,7 @@ const Categories = () => {
               Best Sellers
             </li>
             <hr />
-            <li onClick={() => navigate("/my-account")}>
+            <li onClick={() => navigate("/my-account/dashboard")}>
               <AiOutlineUser />
               My Account
             </li>{" "}

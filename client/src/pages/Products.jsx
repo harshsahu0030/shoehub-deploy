@@ -228,6 +228,7 @@ const Products = () => {
             brands={brands}
             searchParams={searchParams}
             setSearchParams={setSearchParams}
+            paramsCategory={paramsCategory}
           />
         </div>
 

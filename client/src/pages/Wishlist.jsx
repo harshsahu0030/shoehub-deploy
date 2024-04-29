@@ -5,11 +5,14 @@ import {
   getWishlistUserAction,
   loadUserAction,
 } from "../app/actions/userAction";
+import Loader from "../components/Loader";
 
 const Wishlist = () => {
   //redux
   const dispatch = useDispatch();
-  const { products } = useSelector((state) => state.getWishlistProducts);
+  const { products, loading } = useSelector(
+    (state) => state.getWishlistProducts
+  );
 
   //useEffect
   useEffect(() => {
@@ -20,19 +23,24 @@ const Wishlist = () => {
   return (
     <div className="wishlist_container">
       <div className="wrapper">
-        <h1>MY WISHLIST -- {products && products.length} ITEMS</h1>
-
-        <hr />
-
-        <div className="wishlist_products">
-          {products && products.length > 0 ? (
-            products.map((item, i) => (
-              <WishlistProductCart key={i} product={item} />
-            ))
-          ) : (
-            <h3>No Products in your Wishlist</h3>
-          )}
-        </div>
+        {loading ? (
+          <Loader />
+        ) : (
+          <>
+            {" "}
+            <h1>MY WISHLIST -- {products ? products.length : 0} ITEMS</h1>
+            <hr />
+            <div className="wishlist_products">
+              {products && products.length > 0 ? (
+                products.map((item, i) => (
+                  <WishlistProductCart key={i} product={item} />
+                ))
+              ) : (
+                <h3>No Products in your Wishlist</h3>
+              )}
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

@@ -31,6 +31,9 @@ import {
   REMOVE_WISHLIST_PRODUCT_FAIL,
   REMOVE_WISHLIST_PRODUCT_REQUEST,
   REMOVE_WISHLIST_PRODUCT_SUCCESS,
+  UPDATE_CART_PRODUCT_FAIL,
+  UPDATE_CART_PRODUCT_REQUEST,
+  UPDATE_CART_PRODUCT_SUCCESS,
   VERIFIED_REGISTER_USER_FAIL,
   VERIFIED_REGISTER_USER_REQUEST,
   VERIFIED_REGISTER_USER_SUCCESS,
@@ -196,6 +199,7 @@ export const userCartWishlistReducer = (state = {}, action) => {
     case ADD_WISHLIST_PRODUCT_REQUEST:
     case REMOVE_CART_PRODUCT_REQUEST:
     case REMOVE_WISHLIST_PRODUCT_REQUEST:
+    case UPDATE_CART_PRODUCT_REQUEST:
       return {
         loading: true,
       };
@@ -204,6 +208,7 @@ export const userCartWishlistReducer = (state = {}, action) => {
     case ADD_WISHLIST_PRODUCT_SUCCESS:
     case REMOVE_CART_PRODUCT_SUCCESS:
     case REMOVE_WISHLIST_PRODUCT_SUCCESS:
+    case UPDATE_CART_PRODUCT_SUCCESS:
       return {
         loading: false,
         message: action.payload.message,
@@ -213,6 +218,7 @@ export const userCartWishlistReducer = (state = {}, action) => {
     case ADD_WISHLIST_PRODUCT_FAIL:
     case REMOVE_CART_PRODUCT_FAIL:
     case REMOVE_WISHLIST_PRODUCT_FAIL:
+    case UPDATE_CART_PRODUCT_FAIL:
       return {
         loading: false,
         error: action.payload,

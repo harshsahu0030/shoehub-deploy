@@ -1,0 +1,20 @@
+.error_page_container {
+  min-height: 70vh;
+  width: 95%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2vmax;
+
+  > h1 {
+    font-size: 2rem;
+  }
+  > a {
+    color: $text-color-dark-blue;
+    text-decoration: underline;
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+}

@@ -1,4 +1,4 @@
-import { AiOutlineUser } from "react-icons/ai";
+import { AiOutlineHeart, AiOutlineUser } from "react-icons/ai";
 import { SlHandbag } from "react-icons/sl";
 import Logo from "../assets/logo.png";
 import { useNavigate } from "react-router-dom";
@@ -7,6 +7,7 @@ import SliderMenu from "./SliderMenu";
 import Location from "./Location";
 import Search from "./Search";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -42,14 +43,15 @@ const Navbar = () => {
         <div className="right">
           <ul>
             <li>
+              <AiOutlineHeart onClick={() => navigate("/wishlist")} />
+            </li>
+            <li>
               <AiOutlineUser
                 onClick={() => navigate("/my-account/dashboard")}
               />
             </li>
-            <li>$0.00</li>
             <li>
-              <SlHandbag />
-              <span>5</span>
+              <SlHandbag onClick={() => navigate("/cart")} />
             </li>
           </ul>
         </div>

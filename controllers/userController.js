@@ -282,6 +282,37 @@ export const getUserCartProductsController = catchAsyncErrors(
   }
 );
 
+//update cart products
+export const updateCartProductsController = catchAsyncErrors(
+  async (req, res, next) => {
+    const user = await UserModel.findById(req.user._id);
+
+    let cart = user.cart.find(
+      (item) => item._id.toString() === req.params.id.toString()
+    );
+
+    if (!cart) {
+      return next(new ErrorHandler("Cart Product not found", 400));
+    }
+
+    const { size, quantity } = req.body;
+
+    if (size) {
+      cart.size = parseInt(size);
+    }
+    if (quantity) {
+      cart.quantity = parseInt(quantity);
+    }
+
+    await user.save();
+
+    return res.status(200).json({
+      success: true,
+      message: "Cart Product updated",
+    });
+  }
+);
+
 //add product from cart controller
 export const addCartController = catchAsyncErrors(async (req, res, next) => {
   const user = await UserModel.findById(req.user._id);
@@ -321,16 +352,11 @@ export const addCartController = catchAsyncErrors(async (req, res, next) => {
 // remove product from cart controller
 export const removeCartController = catchAsyncErrors(async (req, res, next) => {
   const user = await UserModel.findById(req.user._id);
-  const product = await ProductModel.findById(req.params.id);
-
-  if (!product) {
-    return next(new ErrorHandler("Product not found", 400));
-  }
 
   let index = -1;
 
-  user.cart.find((item, i) => {
-    item.product._id.toString() === product._id.toString();
+  index = user.cart.find((item, i) => {
+    item._id.toString() === req.params.id.toString();
     index = i;
   });
 

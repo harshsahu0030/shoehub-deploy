@@ -30,6 +30,7 @@ const Products_Section01 = ({
   handlefilterMenuVisible,
   filteredProductsCount,
   brands,
+  paramsCategory,
 }) => {
   const navigate = useNavigate();
 
@@ -66,56 +67,60 @@ const Products_Section01 = ({
 
       <hr />
 
-      <div>
-        <h4>CATEGORIES</h4>
-        <ul>
-          {categories
-            .find((item) => item.gender === gender)
-            .types.slice(0, 10)
-            .map((item, i) => (
-              <li key={i}>
-                <div className="input_checkbox_container">
-                  <input
-                    type="checkbox"
-                    value={item}
-                    checked={category.includes(item)}
-                    onChange={() => handleCheckCategory(item)}
-                  />
-                  <label htmlFor={item}>{item}</label>
-                </div>
-              </li>
-            ))}
-        </ul>
-        <span onClick={() => handleVisible("visible")}>+ More</span>
+      {!paramsCategory && (
+        <>
+          <div>
+            <h4>CATEGORIES</h4>
+            <ul>
+              {categories
+                .find((item) => item.gender === gender)
+                .types.slice(0, 10)
+                .map((item, i) => (
+                  <li key={i}>
+                    <div className="input_checkbox_container">
+                      <input
+                        type="checkbox"
+                        value={item}
+                        checked={category.includes(item)}
+                        onChange={() => handleCheckCategory(item)}
+                      />
+                      <label htmlFor={item}>{item}</label>
+                    </div>
+                  </li>
+                ))}
+            </ul>
+            <span onClick={() => handleVisible("visible")}>+ More</span>
 
-        <div className="show_box_container" ref={showRef}>
-          <h4>
-            Categories
-            <IoCloseSharp onClick={handleVisible} />
-          </h4>
+            <div className="show_box_container" ref={showRef}>
+              <h4>
+                Categories
+                <IoCloseSharp onClick={handleVisible} />
+              </h4>
+              <hr />
+
+              <ul className="items">
+                {categories
+                  .find((item) => item.gender === gender)
+                  .types.map((item, i) => (
+                    <li key={i}>
+                      <div className="input_checkbox_container">
+                        <input
+                          type="checkbox"
+                          value={item}
+                          checked={category.includes(item)}
+                          onChange={() => handleCheckCategory(item)}
+                        />
+                        <label htmlFor={item}>{item}</label>
+                      </div>
+                    </li>
+                  ))}
+              </ul>
+            </div>
+          </div>
+
           <hr />
-
-          <ul className="items">
-            {categories
-              .find((item) => item.gender === gender)
-              .types.map((item, i) => (
-                <li key={i}>
-                  <div className="input_checkbox_container">
-                    <input
-                      type="checkbox"
-                      value={item}
-                      checked={category.includes(item)}
-                      onChange={() => handleCheckCategory(item)}
-                    />
-                    <label htmlFor={item}>{item}</label>
-                  </div>
-                </li>
-              ))}
-          </ul>
-        </div>
-      </div>
-
-      <hr />
+        </>
+      )}
 
       <div>
         <h4>BRAND</h4>
@@ -270,6 +275,7 @@ Products_Section01.propTypes = {
   handlefilterMenuVisible: propTypes.func,
   products: propTypes.array,
   filteredProductsCount: propTypes.number,
+  paramsCategory: propTypes.string,
 };
 
 export default Products_Section01;

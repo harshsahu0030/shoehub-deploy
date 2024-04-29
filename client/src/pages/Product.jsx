@@ -214,6 +214,7 @@ const Product = () => {
                       className={
                         parseInt(size) === parseInt(item.size) ? "active" : ""
                       }
+                      disabled={item.stock > 0 ? false : true}
                     >
                       {item.size}
                     </button>

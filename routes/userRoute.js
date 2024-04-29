@@ -11,6 +11,7 @@ import {
   registerUserVerfiedController,
   removeCartController,
   removeWishlistController,
+  updateCartProductsController,
   updateUserPasswordController,
 } from "../controllers/userController.js";
 import { isAuthenticated } from "../middlewares/auth.js";
@@ -52,6 +53,10 @@ router
 
 //cart
 router.route("/cart").get(isAuthenticated, getUserCartProductsController);
+
+router
+  .route("/cart/update/:id")
+  .put(isAuthenticated, updateCartProductsController);
 
 router.route("/cart/add/:id").post(isAuthenticated, addCartController);
 
