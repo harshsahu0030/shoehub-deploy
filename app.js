@@ -4,9 +4,9 @@ import middleware from "./middlewares/error.js";
 import { connectDatabase } from "./database/database.js";
 import cookieParser from "cookie-parser";
 import { v2 as cloudinary } from "cloudinary";
+import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
-import cors from "cors";
 
 const app = express();
 

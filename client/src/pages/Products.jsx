@@ -7,6 +7,7 @@ import { RiMenuUnfoldLine } from "react-icons/ri";
 import Loader from "../components/Loader";
 import ProductCart from "../components/ProductCart";
 import PaginationCom from "../components/Pagination";
+import { useDebounce } from "../hooks/debounce";
 
 const Products = () => {
   const navigate = useNavigate();
@@ -29,6 +30,10 @@ const Products = () => {
   const [price, setPrice] = useState([100, 50000]);
   const [ratings, setRatings] = useState([0, 5]);
   let limit = 10;
+
+  //hook
+  const debouncedPrice = useDebounce(price);
+  const debouncedRating = useDebounce(ratings);
 
   //ref
   const showRef = useRef();
@@ -148,19 +153,30 @@ const Products = () => {
       cat: category.join("%3"),
       bnd: brand.join("%3"),
       clr: color.join("%3"),
-      ph: price[0],
-      pl: price[1],
-      rh: ratings[0],
-      rl: ratings[1],
+      ph: debouncedPrice[0],
+      pl: debouncedPrice[1],
+      rh: debouncedRating[0],
+      rl: debouncedRating[1],
       dis: discount,
       p: page,
     });
-  }, [setSearchParams, category, brand, color, discount, page, price, ratings]);
+  }, [
+    setSearchParams,
+    category,
+    brand,
+    color,
+    discount,
+    page,
+    debouncedPrice,
+    debouncedRating,
+  ]);
 
   // useEffect
   useMemo(() => {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
+    const moveToTop = setTimeout(() => {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }, 500);
 
     dispatch(
       getProductsAction(
@@ -175,6 +191,8 @@ const Products = () => {
         limit
       )
     );
+
+    return () => clearTimeout(moveToTop);
   }, [
     dispatch,
     gender,
@@ -244,6 +262,10 @@ const Products = () => {
                 >
                   F<RiMenuUnfoldLine />
                 </span>
+
+                <select name="" id="">
+                  <option value="">Sort By:</option>
+                </select>
               </div>
               <div className="center">
                 {products ? (

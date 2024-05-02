@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getSearchProductsAction } from "../app/actions/productAction";
 import { useNavigate } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { useDebounce } from "../hooks/debounce";
 
 const Search = () => {
   const navigate = useNavigate();
@@ -14,6 +15,9 @@ const Search = () => {
   //state
   const [search, setSearch] = useState("");
   const { products } = useSelector((state) => state.getSearchProducts);
+
+  //hook
+  const debouncedSearch = useDebounce(search);
 
   //ref
   const dropDownRef = useRef();
@@ -33,8 +37,8 @@ const Search = () => {
 
   //useEffect
   useMemo(() => {
-    dispatch(getSearchProductsAction(search));
-  }, [dispatch, search]);
+    dispatch(getSearchProductsAction(debouncedSearch));
+  }, [dispatch, debouncedSearch]);
 
   return (
     <div className="search_container" onMouseLeave={handlehiddenDropdown}>
